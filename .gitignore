@@ -16,3 +16,4 @@ local.properties
 *.apk
 *.jar
 *.xml
+*.class
