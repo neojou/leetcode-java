@@ -1,3 +1,4 @@
+
 class Solution0035 {
     protected int searchSmallerRange(final int[] nums, int left, int right, int target) {
         if (left >= right)

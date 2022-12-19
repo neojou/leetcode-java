@@ -14,6 +14,5 @@ public class NJBinarySearch {
 
     public int searchInsert(int[] nums, int target) {
         return searchSmallerRange(nums, 0, nums.length, target);
-
     }
 }
