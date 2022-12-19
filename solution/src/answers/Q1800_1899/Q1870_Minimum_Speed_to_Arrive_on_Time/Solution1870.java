@@ -1,29 +1,13 @@
 package answers.Q1800_1899.Q1870_Minimum_Speed_to_Arrive_on_Time;
 
 public class Solution1870 {
-    protected int oneSpeedOnTimeRange(final int[] dist, int last, int hour, int speed) {
-        int last_speed;
-        int max_time = last * 100;
-        //System.out.println("last=" + last + ", hour=" + hour + ", speed=" + speed);
-        if (hour < max_time)
-            return -1;
-        int time = hour - max_time;
-        if (time == 0)
-            return -1;
-        //System.out.println("dist["+last+"]="+dist[last]);
-        last_speed = (dist[last] + time - 1) / time;
-        if (last_speed == 0)
-            last_speed = 1;
-        //System.out.println("last_speed=" + last_speed);
-        if (last_speed > speed)
-            speed = last_speed;
-        if (last == 0)
-            return speed;
-        int new_hour_spend = (dist[last] + speed - 1)/speed;
-        int last_time = hour - new_hour_spend;
-        //System.out.println("last_time=" + last_time + ", max_time=" + max_time);
-        return oneSpeedOnTimeRange(dist, last - 1,
-                last_time, speed);
+    int hour100;
+    int[] distA;
+    int max_speed;
+
+    public static int align(int num, int base) {
+        // Calculate the next multiple of the base that is equal to or greater than the given number
+        return (num + base - 1) - ((num + base - 1) % base);
     }
 
     protected boolean checkSpeedOnTimeRange(final int[] dist, int cur, int hour, int speed) {
@@ -35,27 +19,51 @@ public class Solution1870 {
         //System.out.println("check spend="+spend);
         if (spend > hour)
             return false;
-        spend = ((spend + 100 - 1) / 100) * 100;
+        spend = align(spend, 100);
         int last_hour = hour - spend;
         //System.out.println("check last_hour="+last_hour);
         return checkSpeedOnTimeRange(dist, cur + 1,
                 last_hour, speed);
     }
 
-    public int minSpeedOnTime(int[] dist, double hour) {
-        if (dist.length < 1)
-            return -1;
-        int last = dist.length - 1;
-        int hour100 = (int)(Math.round(hour * 100));
+    protected boolean normalization(int[] dist, double hour) {
+        // parameter check
+        // hour100
+        hour100 = (int)(Math.round(hour * 100));
+
+        // distA
+        distA = dist;
+        if ((distA == null) || (distA.length < 1))
+            return false;
         for (int i = 0; i < dist.length; i++)
             dist[i] *= 100;
-        int possible_speed = oneSpeedOnTimeRange(dist, last, hour100, 1);
-        System.out.println("possible_speed="+possible_speed);
-        int min_speed = possible_speed;
-        for (int s = min_speed - 1; s > 1; s--) {
+
+        // max_speed
+        max_speed = 1;
+        for (int i = 0; i < dist.length; i++) {
+            if (dist[i] > max_speed)
+                max_speed = dist[i];
+        }
+        return true;
+    }
+
+    public int minSpeedOnTime(int[] dist, double hour) {
+        if (normalization(dist, hour) == false)
+            return -1;
+
+        int last = dist.length - 1;
+
+        int min_speed = max_speed;
+        System.out.println("max_speed="+max_speed);
+        if (checkSpeedOnTimeRange(dist, 0, hour100, max_speed) == false)
+            return -1;
+
+        /* Should change to binary search here */
+        for (int s = max_speed - 1; s > 0; s--) {
             if (checkSpeedOnTimeRange(dist, 0, hour100, s) == false)
                 break;
             min_speed = s;
+            //System.out.println("min_speed="+min_speed);
         }
 
         return min_speed;
