@@ -47,7 +47,7 @@ class Solution1870Test {
         int expect = 10000000;
 
         int output = sol.minSpeedOnTime(dist, hour);
-        System.out.println("output=" + output);
+        //System.out.println("output=" + output);
         assertEquals(expect, output);
     }
 
@@ -57,7 +57,7 @@ class Solution1870Test {
         int expect = 4;
 
         int output = sol.minSpeedOnTime(dist, hour);
-        System.out.println("output=" + output);
+        //System.out.println("output=" + output);
         assertEquals(expect, output);
     }
 
@@ -67,7 +67,7 @@ class Solution1870Test {
         int expect = 78;
 
         int output = sol.minSpeedOnTime(dist, hour);
-        System.out.println("output=" + output);
+        //System.out.println("output=" + output);
         assertEquals(expect, output);
     }
 
@@ -77,7 +77,7 @@ class Solution1870Test {
         int expect = 65;
 
         int output = sol.minSpeedOnTime(dist, hour);
-        System.out.println("output=" + output);
+        //System.out.println("output=" + output);
         assertEquals(expect, output);
     }
 
@@ -87,12 +87,13 @@ class Solution1870Test {
         int expect = 45;
 
         int output = sol.minSpeedOnTime(dist, hour);
-        System.out.println("output=" + output);
+        //System.out.println("output=" + output);
         assertEquals(expect, output);
     }
 
     @Test
     void minSpeedOnTime() {
+        long then = System.currentTimeMillis();
         example1();
         example2();
         example3();
@@ -101,5 +102,7 @@ class Solution1870Test {
         example6();
         example7();
         example8();
+        long now = System.currentTimeMillis();
+        System.out.println("Elapsed time: " + (now - then));
     }
 }
