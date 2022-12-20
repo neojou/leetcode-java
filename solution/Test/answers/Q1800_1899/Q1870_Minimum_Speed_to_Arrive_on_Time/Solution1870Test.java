@@ -83,12 +83,15 @@ class Solution1870Test {
 
     @Test
     void minSpeedOnTime() {
-        example1();
-        example2();
-        example3();
+        //example1();
+        //example2();
+        //example3();
         example4();
+        /*
         example5();
         example6();
         example7();
+
+         */
     }
 }
