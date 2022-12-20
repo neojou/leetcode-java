@@ -3,20 +3,18 @@ package answers.Q1800_1899.Q1870_Minimum_Speed_to_Arrive_on_Time;
 public class Solution1870 {
     int max_speed;
 
-    protected boolean checkSpeedOnTimeRange(final int[] dist, int cur, double hour, int speed) {
-        if (cur >= dist.length)
-            return true;
-        //System.out.println("check cur=" + cur + ", hour=" + hour + ", speed=" + speed);
-        //System.out.println("dist["+cur+"]="+dist[cur]);
-        double spend = (double)dist[cur] / (double)speed;
-        //System.out.println("check spend="+spend);
-        if (spend * 100 > Math.round(hour * 100))
-            return false;
-        spend = Math.ceil(spend);
-        double last_hour = hour - spend;
-        //System.out.println("check last_hour="+last_hour);
-        return checkSpeedOnTimeRange(dist, cur + 1,
-                last_hour, speed);
+    protected boolean checkSpeedOnTime(final int[] dist, double hour, int speed) {
+        double res = 0;
+        double spend;
+        int i = 0;
+
+        for (; i < dist.length - 1; i++) {
+            spend = (double) dist[i] / (double) speed;
+            res += Math.ceil(spend);
+        }
+        spend = (double) dist[i] / (double) speed;
+        res += spend;
+        return (res * 1000 > Math.round(hour * 1000) ? false : true);
     }
 
     protected boolean normalization(int[] dist, double hour) {
@@ -38,7 +36,7 @@ public class Solution1870 {
         int mid = (min_s + max_s) / 2;
         if (mid == min_s)
             return max_s;
-        if (checkSpeedOnTimeRange(dist, 0, hour, mid) == true)
+        if (checkSpeedOnTime(dist, hour, mid) == true)
             return minSpeedOnTimeRange(dist, hour, min_s, mid);
         return minSpeedOnTimeRange(dist, hour, mid, max_s);
     }
@@ -50,9 +48,9 @@ public class Solution1870 {
         int last = dist.length - 1;
 
         //System.out.println("max_speed="+max_speed);
-        if (checkSpeedOnTimeRange(dist, 0, hour, max_speed) == false)
+        if (checkSpeedOnTime(dist, hour, max_speed) == false)
             return -1;
-        if (checkSpeedOnTimeRange(dist, 0, hour, 1) == true)
+        if (checkSpeedOnTime(dist, hour, 1) == true)
             return 1;
 
         return (int)minSpeedOnTimeRange(dist, hour, 1, max_speed);

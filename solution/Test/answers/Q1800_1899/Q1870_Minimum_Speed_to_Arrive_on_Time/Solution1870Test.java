@@ -81,17 +81,25 @@ class Solution1870Test {
         assertEquals(expect, output);
     }
 
+    void example8() {
+        int[] dist = {7,80,82,11,58,38,78,41,80,21,2,43,57,45,17,92,42,19,39,98,9,31,68,42,83,80,6,67,18,83,86,57,46,80,55,64,95,85,65,69,83,11,76,93,63};
+        double hour = 75.4;
+        int expect = 45;
+
+        int output = sol.minSpeedOnTime(dist, hour);
+        System.out.println("output=" + output);
+        assertEquals(expect, output);
+    }
+
     @Test
     void minSpeedOnTime() {
-        //example1();
-        //example2();
-        //example3();
+        example1();
+        example2();
+        example3();
         example4();
-        /*
         example5();
         example6();
         example7();
-
-         */
+        example8();
     }
 }
