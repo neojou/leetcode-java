@@ -1,14 +1,15 @@
 package answers.Q1800_1899.Q1870_Minimum_Speed_to_Arrive_on_Time;
 
+
 public class Solution1870 {
     int max_speed;
 
-    protected boolean normalization(final int[] dist, double hour) {
+    protected boolean normalization(final int[] dist, final double hour) {
         if ((dist == null) || (dist.length < 1))
             return false;
 
-        max_speed = 1;
         int len = dist.length;
+        max_speed = 1;
         for (int i = 0; i < len - 1; i++) {
             if (dist[i] > max_speed)
                 max_speed = dist[i];
@@ -19,7 +20,8 @@ public class Solution1870 {
         return true;
     }
 
-    protected boolean checkSpeedOnTime(final int[] dist, double hour, int speed) {
+    protected boolean checkSpeedOnTime(final int[] dist,
+                                       final double hour, final int speed) {
         double res = 0;
         double spend;
         int i = 0;
@@ -30,10 +32,11 @@ public class Solution1870 {
         }
         spend = (double) dist[i] / (double) speed;
         res += spend;
-        return (res * 1000 > Math.round(hour * 1000) ? false : true);
+        return res <= hour;
     }
 
-    protected int minSpeedOnTimeRange(final int[] dist, final double hour, int left, int right) {
+    protected int minSpeedOnTimeRange(final int[] dist, final double hour,
+                                      final int left, final int right) {
         if (left >= right)
             return left;
 
@@ -53,6 +56,6 @@ public class Solution1870 {
         if (checkSpeedOnTime(dist, hour, max_speed) == false)
             return -1;
 
-        return (int)minSpeedOnTimeRange(dist, hour, 1, max_speed);
+        return minSpeedOnTimeRange(dist, hour, 1, max_speed);
     }
 }
