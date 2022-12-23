@@ -1,16 +1,17 @@
+package answers.Q0000_0099.Q0035_Search_Insert_Position;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 
-import com.nj.algo.search.NJBinarySearch;
-
-class NJBinarySearchTest {
-    NJBinarySearch nj_search;
+class Solution0035Test {
+    Solution0035 s;
 
     @BeforeEach
     void setUp() {
-        nj_search = new NJBinarySearch();
+        s = new Solution0035();
     }
 
     private void searchInsertExam3() {
@@ -18,7 +19,7 @@ class NJBinarySearchTest {
         int target = 7;
         int result = 4;
         int pos;
-        pos = nj_search.findPosToInsert(nums, target);
+        pos = s.searchInsert(nums, target);
         Assertions.assertEquals(pos, result);
     }
 
@@ -27,7 +28,7 @@ class NJBinarySearchTest {
         int target = 2;
         int result = 1;
         int pos;
-        pos = nj_search.findPosToInsert(nums, target);
+        pos = s.searchInsert(nums, target);
         Assertions.assertEquals(pos, result);
     }
 
@@ -36,7 +37,7 @@ class NJBinarySearchTest {
         int target = 5;
         int result = 2;
         int pos;
-        pos = nj_search.findPosToInsert(nums, target);
+        pos = s.searchInsert(nums, target);
         Assertions.assertEquals(pos, result);
     }
 
