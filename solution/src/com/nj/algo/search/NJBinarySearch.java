@@ -1,21 +1,17 @@
 package com.nj.algo.search;
 
-public class NJBinarySearch implements NJSearchAlgorithm {
-    @Override
+public class NJBinarySearch {
     public int findPosToInsert(final int[] array, int item) {
         return searchPos(array, item, 0, array.length);
     }
 
-    @Override
     public int findPosToInsert(final long[] array, long item) {
         return searchPos(array, item, 0, array.length);
     }
 
-    @Override
     public <T extends Comparable<T>> int findPosToInsert(final T[] array, T item) {
         return searchPos(array, item, 0, array.length);
     }
-
 
     private  int searchPos(final int[] array, int item, int left, int right) {
         if (left >= right)
@@ -50,4 +46,17 @@ public class NJBinarySearch implements NJSearchAlgorithm {
         else
             return searchPos(array, item, left, mid);
     }
+
+    public  <T extends NJSearchAble> int biggestMeet(final T set, int lk, int rk) {
+        if (lk >= rk)
+            return lk;
+
+        int mid = (lk + rk + 1) >>> 1;
+        Boolean isMeet = set.ifMeet(mid);
+        if (isMeet)
+            return biggestMeet(set, mid, rk);
+        else
+            return biggestMeet(set, lk, mid - 1);
+    }
+
 }
