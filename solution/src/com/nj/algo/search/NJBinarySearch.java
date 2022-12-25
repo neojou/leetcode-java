@@ -58,5 +58,4 @@ public class NJBinarySearch {
         else
             return biggestMeet(set, lk, mid - 1);
     }
-
 }
