@@ -1,22 +1,20 @@
 ## Binary Search
 
-### Algorithm in Pseudo code
+### Algorithm in Java
 
 
 ```
-def binary_search_smaller_range(list, left, right, item)
-    if (left >= right):
-        return left 
+    public  <T extends NJSearchAble> int biggestMeet(final T set, int lk, int rk) {
+        if (lk >= rk)
+            return lk;
 
-    mid = (left + right)/2
-    if (nums[mid] >= item):
-        return binary_search_smaller_range(list, left, mid, item)
-    else
-        return binary_search_smaller_range(list, mid + 1, right, item)
-
-
-def binary_search(list, item)
-    return binary_search_smaller_range(list, 0, list.length, item)
+        int mid = (lk + rk + 1) >>> 1;
+        Boolean isMeet = set.ifMeet(mid);
+        if (isMeet)
+            return biggestMeet(set, mid, rk);
+        else
+            return biggestMeet(set, lk, mid - 1);
+    }
 
 ```
 
