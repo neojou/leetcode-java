@@ -1,10 +1,10 @@
 package com.nj.algo.search;
 
-public class NJIntArraySearch implements NJSearchAble {
-    int[] nums;
-    int target;
+public class NJLongArraySearch implements NJSearchAble {
+    long[] nums;
+    long target;
 
-    public NJIntArraySearch(int[] nums) {
+    public NJLongArraySearch(long[] nums) {
         this.nums = nums;
     }
 
@@ -15,7 +15,7 @@ public class NJIntArraySearch implements NJSearchAble {
         return (nums[k] < target);
     }
 
-    public int findPosToInsert(int target) {
+    public int findPosToInsert(long target) {
         this.target = target;
         NJBinarySearch bs = new NJBinarySearch();
         int k = bs.biggestMeet(this, -1, nums.length);

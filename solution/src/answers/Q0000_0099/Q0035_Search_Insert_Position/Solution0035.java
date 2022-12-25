@@ -4,7 +4,7 @@ import com.nj.algo.search.NJIntArraySearch;
 
 public class Solution0035 {
     public int searchInsert(int[] nums, int target) {
-        NJIntArraySearch ias = new NJIntArraySearch(nums, target);
+        NJIntArraySearch ias = new NJIntArraySearch(nums);
         return ias.findPosToInsert(target);
     }
 }
